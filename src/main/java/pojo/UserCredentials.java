@@ -1,4 +1,4 @@
-package com.api.pojo;
+package pojo;
 
 public class UserCredentials {
     private String username;

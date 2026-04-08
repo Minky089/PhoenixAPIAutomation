@@ -1,9 +1,10 @@
 package com.api.test;
 
-import com.restassured.demo.UserCredentials;
+import com.api.utils.ConfigManager;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Test;
+import pojo.UserCredentials;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -15,7 +16,7 @@ public class LoginAPITest {
         UserCredentials userCredentials = new UserCredentials("iamfd", "password");
 
         given()
-                .baseUri("http://64.227.160.186:9000/v1/")
+                .baseUri(ConfigManager.getProperty("BASE_URI"))
                 .and()
                 .contentType(ContentType.JSON)
                 .and()
