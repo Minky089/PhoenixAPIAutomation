@@ -14,7 +14,6 @@ public class LoginAPITest {
     @Test
     public void loginAPITest() {
         UserCredentials userCredentials = new UserCredentials("iamfd", "password");
-
         given()
                 .baseUri(ConfigManager.getProperty("BASE_URI"))
                 .and()
@@ -37,7 +36,7 @@ public class LoginAPITest {
                 .and().body("data.token", notNullValue())
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/loginAPIResponseSchema.json"))
                 .and()
-                .time(lessThan((long)2000))
+                .time(lessThan((long) 2000))
                 .extract().response();
     }
 }

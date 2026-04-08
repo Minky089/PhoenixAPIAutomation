@@ -1,24 +1,25 @@
 package com.api.utils;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigManager {
-    private static Properties properties = new Properties();
-
+    private static final Properties properties = new Properties();
+    private static final String path = "config" + File.separator + "config.properties";
     private ConfigManager() {
 
     }
     static {
-        //Operation of loading the properties file in the memory.
-        //Static block will be executed once during class loading time.
-        File configFile = new File(System.getProperty("user.dir") + "/src/test/resources/config/config.properties");
-        FileReader fileReader = null;
+        InputStream input = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+
+        if (input == null) {
+           throw  new RuntimeException("Can't find the config file at path: " + path);
+        }
+
         try {
-            fileReader = new FileReader(configFile);
-            properties.load(fileReader);
+            properties.load(input);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
