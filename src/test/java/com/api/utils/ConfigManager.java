@@ -17,18 +17,9 @@ public class ConfigManager {
     static {
         env = System.getProperty("env", "qa").toLowerCase().trim(); //default env is qa if no param pass in
         switch (env) {
-            case "dev": {
-                path = "config" + File.separator + "config.dev.properties";
-                break;
-            }
-            case "uat": {
-                path = "config" + File.separator + "config.uat.properties";
-                break;
-            }
-            default: {
-                path = "config" + File.separator + "config.qa.properties";
-                break;
-            }
+            case "dev" -> path = "config" + File.separator + "config.dev.properties";
+            case "uat" -> path = "config" + File.separator + "config.uat.properties";
+            default -> path = "config" + File.separator + "config.qa.properties";
         }
     }
 
