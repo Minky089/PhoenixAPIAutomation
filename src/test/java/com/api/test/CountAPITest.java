@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class CountAPITest {
-    @Test
+    @Test(description = "Verify if count API is giving correct response", groups = {"api", "regression", "smoke"})
     public void countAPITest() {
         given()
                 .spec(getRequestSpecWithAuth(Roles.FD))
@@ -27,7 +27,7 @@ public class CountAPITest {
                 .body("data.key", containsInAnyOrder("pending_fst_assignment", "pending_for_delivery", "created_today"));
     }
 
-    @Test
+    @Test(description = "Verify if count API is giving correct status code for missing token", groups = {"api", "regression", "negative"})
     public void countAPITest_MissingAuthToken() {
         given()
                 .baseUri(ConfigManager.getProperty("BASE_URI"))

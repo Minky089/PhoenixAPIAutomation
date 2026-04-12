@@ -9,7 +9,7 @@ import static com.api.utils.SpecUtil.getRequestSpecWithAuth;
 import static io.restassured.RestAssured.given;
 
 public class UserDetailsAPITest {
-    @Test
+    @Test(description = "Verify if Userdetails API is giving correct response", groups = {"api", "regression", "smoke"})
     public void userDetailsTest() {
         given()
                 .spec(getRequestSpecWithAuth(Roles.FD))

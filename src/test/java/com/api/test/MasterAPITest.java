@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class MasterAPITest {
-    @Test
+    @Test(description = "Verify if the master API is giving correct response", groups = {"api", "regression", "smoke"})
     public void masterAPITest() {
         given()
                 .spec(getRequestSpecWithAuth(Roles.FD))
@@ -30,7 +30,7 @@ public class MasterAPITest {
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/masterResponseSchema.json"));
     }
 
-    @Test
+    @Test(description = "Verify if master API is giving correct status code for missing token", groups = {"api", "regression", "negative"})
     public void masterAPITest_MissingAuthToken() {
         given()
                 .baseUri(ConfigManager.getProperty("BASE_URI"))
