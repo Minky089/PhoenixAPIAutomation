@@ -5,7 +5,7 @@ import io.restassured.http.ContentType;
 
 import static org.hamcrest.Matchers.*;
 
-import pojo.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 import static io.restassured.RestAssured.*;
 

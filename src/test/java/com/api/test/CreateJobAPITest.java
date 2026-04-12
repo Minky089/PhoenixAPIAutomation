@@ -1,9 +1,10 @@
 package com.api.test;
 
-import com.api.constant.Roles;
+import com.api.constant.*;
+import com.api.request.model.*;
+import com.api.utils.DateTimeUtil;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Test;
-import pojo.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,9 @@ public class CreateJobAPITest {
     private final String myImei = new Random().ints(15, 0, 10).mapToObj(String::valueOf).collect(Collectors.joining());
     Customer customer = new Customer("Minky", "Nguyen", "7045663552", "", "minky0089@gmail.com", "");
     CustomerAddress customerAddress = new CustomerAddress("805", "Oakwood Heights", "Sunset Boulevard", "Grand Theater", "West End", 90210, "USA", "California");
-    CustomerProduct customerProduct = new CustomerProduct("2026-03-02T17:00:00.000Z", myImei, myImei, myImei, "2026-03-05T17:00:00.000Z", 1, 1);
-    List<Problems> problemsList = new ArrayList<>(List.of(new Problems(1, "Battery Die")));
-    CreateJobPayload createJobPayload = new CreateJobPayload(0, 2, 1, 1, customer, customerAddress, customerProduct, problemsList);
+    CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), myImei, myImei, myImei, DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getId(), Model.NEXUS_2_BLUE.getId());
+    List<Problems> problemsList = new ArrayList<>(List.of(new Problems(Problem.POOR_BATTERY_LIFE.getId(), "Battery Die")));
+    CreateJobPayload createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getId(), Platform.FRONT_DESK.getId(), WarrantyStatus.IN_WARRANTY.getId(), OEM.GOOGLE.getId(), customer, customerAddress, customerProduct, problemsList);
 
     @Test
     public void createJobAPITest() {

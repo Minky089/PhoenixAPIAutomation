@@ -1,7 +1,7 @@
 package com.api.test;
 
 import org.testng.annotations.Test;
-import pojo.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 import static com.api.utils.SpecUtil.getRequestSpec;
 import static com.api.utils.SpecUtil.getResponseSpec_OK;
