@@ -7,7 +7,6 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import pojo.UserCredentials;
 
 import static org.hamcrest.Matchers.lessThan;
 
@@ -33,12 +32,23 @@ public class SpecUtil {
                 .build();
     }
 
-    public static RequestSpecification requestSpecWithAuth(Roles role){
+    public static RequestSpecification getRequestSpecWithAuth(Roles role){
         return new RequestSpecBuilder()
                 .setBaseUri(ConfigManager.getProperty("BASE_URI"))
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
+                .log(LogDetail.ALL)
+                .build();
+    }
+
+    public static RequestSpecification getRequestSpecWithAuth(Roles role, Object payload) {
+        return new RequestSpecBuilder()
+                .setBaseUri(ConfigManager.getProperty("BASE_URI"))
+                .setContentType(ContentType.JSON)
+                .setAccept(ContentType.JSON)
+                .addHeader("Authorization", AuthTokenProvider.getToken(role))
+                .setBody(payload)
                 .log(LogDetail.ALL)
                 .build();
     }

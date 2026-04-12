@@ -14,7 +14,7 @@ public class CountAPITest {
     @Test
     public void countAPITest() {
         given()
-                .spec(requestSpecWithAuth(Roles.FD))
+                .spec(getRequestSpecWithAuth(Roles.FD))
                 .when()
                 .get("dashboard/count")
                 .then()

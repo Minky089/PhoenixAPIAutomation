@@ -14,7 +14,7 @@ public class MasterAPITest {
     @Test
     public void masterAPITest() {
         given()
-                .spec(requestSpecWithAuth(Roles.FD))
+                .spec(getRequestSpecWithAuth(Roles.FD))
                 .when()
                 .post("master")
                 .then()
