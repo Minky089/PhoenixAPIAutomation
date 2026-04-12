@@ -1,35 +1,3 @@
 package pojo;
 
-public class Problems {
-    private int id;
-    private String remark;
-
-    public Problems(int id, String remark) {
-        this.id = id;
-        this.remark = remark;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    @Override
-    public String toString() {
-        return "Problems{" +
-                "id=" + id +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
-}
+public record Problems (int id, String remark){}

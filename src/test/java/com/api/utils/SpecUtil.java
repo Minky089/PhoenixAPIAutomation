@@ -69,5 +69,4 @@ public class SpecUtil {
                 .log(LogDetail.ALL)
                 .build();
     }
-
 }
