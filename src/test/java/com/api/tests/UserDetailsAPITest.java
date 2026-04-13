@@ -1,4 +1,4 @@
-package com.api.test;
+package com.api.tests;
 
 import com.api.constant.Roles;
 import io.restassured.module.jsv.JsonSchemaValidator;

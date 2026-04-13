@@ -1,4 +1,4 @@
-package com.api.test;
+package com.api.tests;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;

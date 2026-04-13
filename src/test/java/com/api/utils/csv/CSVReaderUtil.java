@@ -7,13 +7,13 @@ import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.List;
 
-public class ReadCSVToPOJO {
-    private ReadCSVToPOJO() {
-    }
+public class CSVReaderUtil {
+    private CSVReaderUtil() {}
 
-    public void loadCSV(String pathOfCSVFile) {
+    public static Iterator<UserBean> loadCSV(String pathOfCSVFile) {
         //Sample file: testData/LoginCreds.csv
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(pathOfCSVFile);
         assert is != null;
@@ -26,6 +26,7 @@ public class ReadCSVToPOJO {
                 .build();
 
         List<UserBean> userList = csVToBean.parse();
-        System.out.println(userList);
+        return userList.iterator();
     }
+
 }
