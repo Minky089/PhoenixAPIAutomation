@@ -1,10 +1,7 @@
 package com.api.tests.datadriven;
 
-import com.api.request.model.UserCredentials;
 import com.dataproviders.api.bean.UserBean;
 import io.restassured.module.jsv.JsonSchemaValidator;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.getRequestSpec;

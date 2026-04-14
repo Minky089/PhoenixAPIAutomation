@@ -1,6 +1,5 @@
 package com.api.utils.csv;
 
-import com.dataproviders.api.bean.UserBean;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -13,20 +12,19 @@ import java.util.List;
 public class CSVReaderUtil {
     private CSVReaderUtil() {}
 
-    public static Iterator<UserBean> loadCSV(String pathOfCSVFile) {
+    public static <T> Iterator<T> loadBeanCSV(String pathOfCSVFile, Class<T> beanClass) {
         //Sample file: testData/LoginCreds.csv
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(pathOfCSVFile);
         assert is != null;
         InputStreamReader isr = new InputStreamReader(is);
         CSVReader csvReader = new CSVReader(isr);
 
-        CsvToBean<UserBean> csVToBean = new CsvToBeanBuilder(csvReader)
-                .withType(UserBean.class)
+        CsvToBean<T> csVToBean = new CsvToBeanBuilder(csvReader)
+                .withType(beanClass)
                 .withIgnoreEmptyLine(true)
                 .build();
 
-        List<UserBean> userList = csVToBean.parse();
-        return userList.iterator();
+        List<T> beanList = csVToBean.parse();
+        return beanList.iterator();
     }
-
 }
