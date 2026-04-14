@@ -2,6 +2,7 @@ package com.dataproviders;
 
 import com.api.request.model.CreateJobPayload;
 import com.api.utils.CreateJobBeanMapper;
+import com.api.utils.FakerDataGenerator;
 import com.api.utils.csv.CSVReaderUtil;
 import com.dataproviders.api.bean.CreateJobBean;
 import com.dataproviders.api.bean.UserBean;
@@ -33,5 +34,10 @@ private DataProvidersUtils() {}
         }
 
         return payloadList.iterator();
+    }
+
+    @DataProvider(name = "CreateJobAPIFakerDataProvider")
+    public static Iterator<CreateJobPayload> createJobAPIDataFakerProvider(){
+        return FakerDataGenerator.generateFakeCreateJobData(10);
     }
 }
