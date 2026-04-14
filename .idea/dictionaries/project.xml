@@ -2,12 +2,15 @@
   <dictionary name="project">
     <words>
       <w>Inwarranty</w>
+      <w>createjobapijsondataprovider</w>
       <w>datadriven</w>
       <w>gallexy</w>
       <w>iameng</w>
       <w>iamfd</w>
       <w>iamqc</w>
       <w>iamsup</w>
+      <w>imei</w>
+      <w>loginapijsondataprovider</w>
       <w>mstoemid</w>
       <w>pincode</w>
       <w>popurl</w>

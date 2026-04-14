@@ -12,13 +12,31 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 
 public class CreateJobAPIDataDrivenTest {
-    /*@Test(description = "Verify if create job API is able to create Inwarranty job",
-          groups = {"api", "regression", "datadriven"},
-          dataProviderClass = com.dataproviders.DataProvidersUtils.class,
-          dataProvider = "CreateJobAPIDataProvider"
-    )*/
-    //Temporary comment out because the imei in CSV files need to be updated manually
-    public void createJobAPITest(CreateJobPayload createJobPayload) {
+    //    @Test(description = "Verify if create job API is able to create Inwarranty job",
+    //          groups = {"api", "regression", "datadriven", "CSV"},
+    //          dataProviderClass = com.dataproviders.DataProvidersUtils.class,
+    //          dataProvider = "CreateJobAPIDataProvider"
+    //    )
+    //Temporary comment out because the imei in this CSV files need to be updated manually
+    public void createJobAPICSVDataDrivenTest(CreateJobPayload createJobPayload) {
+        given().spec(getRequestSpecWithAuth(Roles.FD, createJobPayload))
+                .when()
+                .post("job/create")
+                .then()
+                .spec(getResponseSpec_OK())
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/createJobResponseSchema.json"))
+                .body("message", equalTo("Job created successfully. "))
+                .body("data.mst_service_location_id", equalTo(1))
+                .body("data.job_number", startsWith("JOB_"));
+    }
+
+    //    @Test(description = "Verify if create job API is able to create Inwarranty job",
+    //             groups = {"api", "regression", "datadriven", "JSON"},
+    //             dataProviderClass = com.dataproviders.DataProvidersUtils.class,
+    //             dataProvider = "CreateJobAPIJSONDataProvider"
+    //       )
+    //Temporary comment out because the imei in this JSON files need to be updated manually
+    public void createJobAPIJSONDataDrivenTest(CreateJobPayload createJobPayload) {
         given().spec(getRequestSpecWithAuth(Roles.FD, createJobPayload))
                 .when()
                 .post("job/create")

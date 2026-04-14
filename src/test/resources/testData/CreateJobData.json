@@ -1,0 +1,80 @@
+[
+  {
+    "mst_service_location_id": 1,
+    "mst_platform_id": 2,
+    "mst_warrenty_status_id": 1,
+    "mst_oem_id": 1,
+    "customer": {
+      "first_name": "Rohit",
+      "last_name": "Patel",
+      "mobile_number": "9876543210",
+      "mobile_number_alt": "9876543219",
+      "email_id": "rohit.patel@example.com",
+      "email_id_alt": "rohitAlt.patel@example.com"
+    },
+    "customer_address": {
+      "flat_number": "C-304",
+      "apartment_name": "Jupiter",
+      "street_name": "MG Road",
+      "landmark": "Banger Nagar",
+      "area": "West Virginia",
+      "pincode": "411039",
+      "country": "India",
+      "state": "Assam"
+    },
+    "customer_product": {
+      "dop": "2025-04-06T18:30:00.000Z",
+      "serial_number": "11471106439359",
+      "imei1": "11471106439359",
+      "imei2": "11471106439359",
+      "popurl": "2026-03-02T17:00:00.000Z",
+      "product_id": "1",
+      "mst_model_id": "1"
+    },
+    "problems": [
+      {
+        "id": 2,
+        "remark": "Display issue"
+      }
+    ]
+  },
+  {
+  "mst_service_location_id": 1,
+  "mst_platform_id": 2,
+  "mst_warrenty_status_id": 1,
+  "mst_oem_id": 1,
+  "customer": {
+    "first_name": "Rohit",
+    "last_name": "Patel",
+    "mobile_number": "9876543210",
+    "mobile_number_alt": "9876543219",
+    "email_id": "rohit.patel@example.com",
+    "email_id_alt": "rohitAlt.patel@example.com"
+  },
+  "customer_address": {
+    "flat_number": "C-304",
+    "apartment_name": "Jupiter",
+    "street_name": "MG Road",
+    "landmark": "Banger Nagar",
+    "area": "West Virginia",
+    "pincode": "411039",
+    "country": "India",
+    "state": "Assam"
+  },
+  "customer_product": {
+    "dop": "2025-04-06T18:30:00.000Z",
+    "serial_number": "11471106439357",
+    "imei1": "11471106439357",
+    "imei2": "11471106439357",
+    "popurl": "2026-03-02T17:00:00.000Z",
+    "product_id": "1",
+    "mst_model_id": "1"
+  },
+  "problems": [
+    {
+      "id": 2,
+      "remark": "Display issue"
+    }
+  ]
+}
+]
