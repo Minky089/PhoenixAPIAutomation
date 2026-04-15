@@ -2,6 +2,7 @@
   <dictionary name="project">
     <words>
       <w>Inwarranty</w>
+      <w>Srdev</w>
       <w>createjobapijsondataprovider</w>
       <w>datadriven</w>
       <w>gallexy</w>
@@ -10,6 +11,7 @@
       <w>iamqc</w>
       <w>iamsup</w>
       <w>imei</w>
+      <w>jdbc</w>
       <w>loginapijsondataprovider</w>
       <w>mstoemid</w>
       <w>pincode</w>
