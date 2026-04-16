@@ -1,12 +1,11 @@
 package com.api.utils;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
 
 public class DateTimeUtil {
     private  DateTimeUtil(){}
 
     public static String getTimeWithDaysAgo(int days){
-       return Instant.now().minus(days, ChronoUnit.DAYS).toString();
+       return LocalDate.now().minusDays(days).toString();
     }
 }

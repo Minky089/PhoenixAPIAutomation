@@ -45,7 +45,7 @@ public class FakerDataGenerator {
         String streetName = FAKER.address().streetName();
         String landMark = FAKER.address().streetName();
         String area = FAKER.address().streetName();
-        String pinCode = FAKER.numerify("#####");
+        String pinCode = FAKER.number().numberBetween(1, 10) + FAKER.numerify("####");
         String state = FAKER.address().state();
 
         return new CustomerAddress(flatNumber, apartmentNumber, streetName, landMark, area, pinCode, COUNTRY, state);

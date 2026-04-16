@@ -3,6 +3,7 @@ package com.database;
 import com.api.utils.ConfigManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import com.zaxxer.hikari.pool.HikariPool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,9 +41,14 @@ public class DatabaseManager {
             hikariConfig.setMaxLifetime(Integer.parseInt(ConfigManager.getProperty("MAX_LIFETIME")));
             hikariConfig.setPoolName(ConfigManager.getProperty("POOL_NAME"));
 
-
-            hikariDataSource = new HikariDataSource(hikariConfig);
-            System.out.println("Success");
+            try {
+                hikariDataSource = new HikariDataSource(hikariConfig);
+                Connection ignoredConn = hikariDataSource.getConnection();
+                System.out.println("Successfully connected to database");
+            } catch (HikariPool.PoolInitializationException | SQLException e) {
+                System.err.println("Database connection failed or timed out: " + e.getMessage());
+                throw new RuntimeException("Could not initialize database pool within timeout period", e);
+            }
         }
     }
 
@@ -51,7 +57,6 @@ public class DatabaseManager {
         if(hikariDataSource == null) {
             instantiateHikariPool();
         }
-
         else if(hikariDataSource.isClosed()) {
             throw new SQLException("HikariDataSource is closed");
         }

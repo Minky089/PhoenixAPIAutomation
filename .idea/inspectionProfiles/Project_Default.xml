@@ -8,7 +8,7 @@
     <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="groups">
         <value>
-          <list size="8">
+          <list size="9">
             <item index="0" class="java.lang.String" itemvalue="Smoke" />
             <item index="1" class="java.lang.String" itemvalue="api" />
             <item index="2" class="java.lang.String" itemvalue="regression" />
@@ -17,6 +17,7 @@
             <item index="5" class="java.lang.String" itemvalue="datadriven" />
             <item index="6" class="java.lang.String" itemvalue="JSON" />
             <item index="7" class="java.lang.String" itemvalue="CSV" />
+            <item index="8" class="java.lang.String" itemvalue="dbvalidation" />
           </list>
         </value>
       </option>
