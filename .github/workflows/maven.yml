@@ -37,7 +37,7 @@ jobs:
         cache: maven
     - name: Creating the .env file
       run: |
-            echo "DB_URL=${{ secrets.DB_URL }}" >> .env
+            echo "DB_URI=${{ secrets.DB_URI }}" >> .env
             echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
     - name: Execute Test
