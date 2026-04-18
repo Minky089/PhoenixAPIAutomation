@@ -5,6 +5,7 @@ import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
+import com.api.services.JobService;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
@@ -63,10 +64,9 @@ public class CreateJobAPIDataDrivenTest {
             dataProviderClass = com.dataproviders.DataProvidersUtils.class,
             dataProvider = "CreateJobAPIFakerDataProvider")
     public void createJobAPITestWithFakeData(CreateJobPayload createJobPayload) {
+        JobService jobService = new JobService();
         int customerId =
-        given().spec(getRequestSpecWithAuth(Roles.FD, createJobPayload))
-                .when()
-                .post("job/create")
+                jobService.createJob(Roles.FD, createJobPayload)
                 .then()
                 .spec(getResponseSpec_OK())
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/createJobResponseSchema.json"))

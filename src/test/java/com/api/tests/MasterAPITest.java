@@ -1,9 +1,12 @@
 package com.api.tests;
 
 import com.api.constant.Roles;
+import com.api.services.MasterService;
 import com.api.utils.ConfigManager;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import org.hamcrest.Description;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.*;
@@ -11,12 +14,16 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class MasterAPITest {
+    MasterService masterService;
+
+    @BeforeMethod(description = "Instantiating Master service object")
+    public void setup() {
+        masterService = new MasterService();
+    }
+
     @Test(description = "Verify if the master API is giving correct response", groups = {"api", "regression", "smoke"})
     public void masterAPITest() {
-        given()
-                .spec(getRequestSpecWithAuth(Roles.FD))
-                .when()
-                .post("master")
+        masterService.master(Roles.FD)
                 .then()
                 .spec(getResponseSpec_OK())
                 .body("data", notNullValue())
@@ -32,13 +39,7 @@ public class MasterAPITest {
 
     @Test(description = "Verify if master API is giving correct status code for missing token", groups = {"api", "regression", "negative"})
     public void masterAPITest_MissingAuthToken() {
-        given()
-                .baseUri(ConfigManager.getProperty("BASE_URI"))
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .log().all()
-                .when()
-                .post("master")
+        masterService.masterWithNoAuth()
                 .then()
                 .spec(getResponseSpec_Text(401));
     }

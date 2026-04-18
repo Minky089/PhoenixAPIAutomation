@@ -3,6 +3,7 @@ package com.api.tests.datadriven;
 import com.api.constant.Roles;
 import com.api.request.model.*;
 import com.api.response.model.CreateJobResponse;
+import com.api.services.JobService;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
@@ -14,9 +15,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-import static com.api.utils.SpecUtil.getRequestSpecWithAuth;
 import static com.api.utils.SpecUtil.getResponseSpec_OK;
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 import static org.testng.Assert.assertEquals;
@@ -29,11 +28,10 @@ public class CreateJobAPIPojoResponseTest {
             dataProviderClass = com.dataproviders.DataProvidersUtils.class,
             dataProvider = "CreateJobAPIFakerDataProvider")
     public void createJobAPIPojoResponse(CreateJobPayload createJobPayload) {
+        JobService jobService = new JobService();
         SoftAssert softAssert = new SoftAssert();
         CreateJobResponse createJobResponse =
-                given().spec(getRequestSpecWithAuth(Roles.FD, createJobPayload))
-                        .when()
-                        .post("job/create")
+                jobService.createJob(Roles.FD, createJobPayload)
                         .then()
                         .spec(getResponseSpec_OK())
                         .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/createJobResponseSchema.json"))

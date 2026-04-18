@@ -2,6 +2,7 @@ package com.api.tests;
 
 import com.api.constant.*;
 import com.api.request.model.*;
+import com.api.services.JobService;
 import com.api.utils.DateTimeUtil;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
@@ -12,18 +13,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static com.api.utils.SpecUtil.getRequestSpecWithAuth;
 import static com.api.utils.SpecUtil.getResponseSpec_OK;
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 
 public class CreateJobAPITest {
     private final String myImei = new Random().ints(15, 0, 10).mapToObj(String::valueOf).collect(Collectors.joining());
     private CreateJobPayload createJobPayload;
+    private JobService jobService;
 
-    @BeforeMethod(description = "Create payload for Create Job API")
+    @BeforeMethod(description = "Create payload for Create Job API, Instantiating Job service object")
     public void setup(){
+        jobService = new JobService();
         Customer customer = new Customer("Minky", "Nguyen", "7045663552", "", "minky0089@gmail.com", "");
         CustomerAddress customerAddress = new CustomerAddress("805", "Oakwood Heights", "Sunset Boulevard", "Grand Theater", "West End", "90210", "USA", "California");
         CustomerProduct customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), myImei, myImei, myImei, DateTimeUtil.getTimeWithDaysAgo(10), Product.NEXUS_2.getId(), Model.NEXUS_2_BLUE.getId());
@@ -33,10 +34,7 @@ public class CreateJobAPITest {
 
     @Test(description = "Verify if create job API is able to create Inwarranty job", groups = {"api", "regression", "smoke"})
     public void createJobAPITest() {
-        given()
-                .spec(getRequestSpecWithAuth(Roles.FD, createJobPayload))
-                .when()
-                .post("job/create")
+        jobService.createJob(Roles.FD, createJobPayload)
                 .then()
                 .spec(getResponseSpec_OK())
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/createJobResponseSchema.json"))
