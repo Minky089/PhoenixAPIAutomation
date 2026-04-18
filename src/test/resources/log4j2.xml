@@ -8,11 +8,20 @@
             FATAL=red bright,
             DEBUG=cyan bright} %c{2.}::%M:%L - %m%n" />
         </Console>
+        <File name="FileAppender" fileName="logs/application.log">
+            <PatternLayout pattern="%d [%t] %highlight{%5p}{INFO=#90EE90,
+            WARN=yellow bright,
+            ERROR=red bright,
+            FATAL=red bright,
+            DEBUG=cyan bright} %c{2.}::%M:%L - %m%n" />
+        </File>
+
     </appenders>
 
     <loggers>
         <root level="INFO">
             <AppenderRef ref="Console" />
+            <AppenderRef ref="FileAppender" />
         </root>
     </loggers>
 </Configuration>
