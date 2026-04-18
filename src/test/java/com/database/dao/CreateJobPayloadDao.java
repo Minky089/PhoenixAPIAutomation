@@ -4,12 +4,14 @@ import com.api.constant.Product;
 import com.api.request.model.CreateJobPayload;
 import com.database.DatabaseManager;
 import com.dataproviders.api.bean.CreateJobBean;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@Log4j2
 public class CreateJobPayloadDao {
     private final static String SQL_QUERY =
             """
@@ -64,9 +66,11 @@ public class CreateJobPayloadDao {
         ResultSet resultSet = null;
         CreateJobBean bean = null;
         try {
-          conn = DatabaseManager.getConnection();
-          stmt = conn.createStatement();
-          resultSet = stmt.executeQuery(SQL_QUERY);
+            log.info("Getting connection from the Database Manager");
+            conn = DatabaseManager.getConnection();
+            stmt = conn.createStatement();
+            log.info("Executing the SQL Query");
+            resultSet = stmt.executeQuery(SQL_QUERY);
             while (resultSet.next()){
                 bean = new CreateJobBean();
                 bean.setMst_service_location_id(resultSet.getString("mst_service_location_id"));
@@ -98,6 +102,7 @@ public class CreateJobPayloadDao {
                 bean.setProblems_remark(resultSet.getString("remark"));
             }
       } catch (SQLException e) {
+            log.error("Can not convert result set to the bean", e);
           throw new RuntimeException(e);
       }
         return bean;

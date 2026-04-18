@@ -4,11 +4,12 @@ import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import com.zaxxer.hikari.pool.HikariPool;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
+@Log4j2
 public class DatabaseManager {
     private static final String DB_URL = EnvUtil.getValue("DB_URI");
     private static final String DB_USERNAME = EnvUtil.getValue("DB_USERNAME");
@@ -18,6 +19,7 @@ public class DatabaseManager {
 
     private static void instantiateHikariPool() {
         if (hikariDataSource == null) {
+            log.warn("Database Connection is not available yet, creating Hikari Datasource");
             HikariConfig hikariConfig = new HikariConfig();
             hikariConfig.setJdbcUrl(DB_URL);
             hikariConfig.setUsername(DB_USERNAME);
@@ -28,25 +30,20 @@ public class DatabaseManager {
             hikariConfig.setIdleTimeout(Integer.parseInt(ConfigManager.getProperty("IDLE_TIME_OUT")));
             hikariConfig.setMaxLifetime(Integer.parseInt(ConfigManager.getProperty("MAX_LIFETIME")));
             hikariConfig.setPoolName(ConfigManager.getProperty("POOL_NAME"));
-
-            try {
-                hikariDataSource = new HikariDataSource(hikariConfig);
-                Connection ignoredConn = hikariDataSource.getConnection();
-                System.out.println("Successfully connected to database");
-            } catch (HikariPool.PoolInitializationException | SQLException e) {
-                System.err.println("Database connection failed or timed out: " + e.getMessage());
-                throw new RuntimeException("Could not initialize database pool within timeout period", e);
-            }
+            hikariDataSource = new HikariDataSource(hikariConfig);
+            log.info("Hikari Datasource created");
         }
     }
 
     public static Connection getConnection() throws SQLException {
         Connection conn = null;
         if(hikariDataSource == null) {
+            log.info("Initializing Database connection with Hikari CP");
             instantiateHikariPool();
         }
         else if(hikariDataSource.isClosed()) {
-            throw new SQLException("HikariDataSource is closed");
+            log.error("HIKARI DATA SOURCE IS CLOSED");
+            throw new SQLException("HIKARI DATA SOURCE IS CLOSED");
         }
         conn = hikariDataSource.getConnection();
         return conn;

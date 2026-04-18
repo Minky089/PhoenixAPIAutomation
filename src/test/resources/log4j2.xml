@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d [%t] %highlight{%5p}{INFO=#90EE90,
+            WARN=yellow bright,
+            ERROR=red bright,
+            FATAL=red bright,
+            DEBUG=cyan bright} %c{2.}::%M:%L - %m%n" />
+        </Console>
+    </appenders>
+
+    <loggers>
+        <root level="INFO">
+            <AppenderRef ref="Console" />
+        </root>
+    </loggers>
+</Configuration>

@@ -2,14 +2,17 @@ package com.api.utils;
 
 import com.api.request.model.*;
 import com.dataproviders.api.bean.CreateJobBean;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 
+@Log4j2
 public class CreateJobBeanMapper {
     private CreateJobBeanMapper() {
     }
 
     public static CreateJobPayload mapper(CreateJobBean bean) {
+        log.info("Converting Create Job Bean {} to Create Job Payload...", bean);
         int mstServiceLocationId = Integer.parseInt(bean.getMst_service_location_id());
         int mstPlatformId = Integer.parseInt(bean.getMst_platform_id());
         int oemId = Integer.parseInt(bean.getMst_oem_id());
@@ -22,7 +25,6 @@ public class CreateJobBeanMapper {
                 bean.getCustomer__email_id(),
                 bean.getCustomer__email_id_alt());
 
-
         CustomerAddress customerAddress = new CustomerAddress(bean.getCustomer_address__flat_number(),
                 bean.getCustomer_address__apartment_name(),
                 bean.getCustomer_address__street_name(),
@@ -32,25 +34,25 @@ public class CreateJobBeanMapper {
                 bean.getCustomer_address__country(),
                 bean.getCustomer_address__state());
 
-        int productId = Integer.parseInt(bean.getCustomer_product__product_id());
-        int modelId = Integer.parseInt(bean.getCustomer_product__mst_model_id());
-
         CustomerProduct customerProduct = new CustomerProduct(bean.getCustomer_product__dop(),
                 bean.getCustomer_product__serial_number(),
                 bean.getCustomer_product__imei1(),
                 bean.getCustomer_product__imei2(),
                 bean.getCustomer_product__popurl(),
-                productId,
-                modelId);
+                Integer.parseInt(bean.getCustomer_product__product_id()),
+                Integer.parseInt(bean.getCustomer_product__mst_model_id()));
 
         int problemlId = Integer.parseInt(bean.getProblems_id());
         List<Problems> problemsList = List.of(new Problems(problemlId, bean.getProblems_remark()));
 
-        return new CreateJobPayload(mstServiceLocationId, mstPlatformId, oemId,
+        CreateJobPayload createJobPayload = new CreateJobPayload(mstServiceLocationId, mstPlatformId, oemId,
                 mstWarrentyStatusId,
                 customer,
                 customerAddress,
                 customerProduct,
                 problemsList);
+        log.info("Converting the bean {} to Create Job Payload", createJobPayload);
+
+        return createJobPayload;
     }
 }

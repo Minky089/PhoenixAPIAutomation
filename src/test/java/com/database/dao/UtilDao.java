@@ -3,6 +3,7 @@ package com.database.dao;
 import com.database.DatabaseManager;
 import com.db.model.JobHeadDBModel;
 import com.db.model.JobProblemDBModel;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class UtilDao {
     private UtilDao() {}
     private static final String PROBLEM_QUERY = "select * from map_job_problem where tr_job_head_id = ?";
@@ -19,9 +21,11 @@ public class UtilDao {
     public static List<JobProblemDBModel> getJobProblemInfo(int jobHeadId) {
         List<JobProblemDBModel> problemList = new ArrayList<>();
         try {
+            log.info("Getting connection from the Database Manager");
             Connection conn = DatabaseManager.getConnection();
             PreparedStatement prepareStmt = conn.prepareStatement(PROBLEM_QUERY);
             prepareStmt.setInt(1, jobHeadId);
+            log.info("Executing the SQL Query");
             ResultSet rs = prepareStmt.executeQuery();
             while (rs.next()) {
                 JobProblemDBModel jobProblem = new JobProblemDBModel(rs.getInt("id"), rs.getInt("tr_job_head_id"),
@@ -29,7 +33,8 @@ public class UtilDao {
                 problemList.add(jobProblem);
             }
         } catch (SQLException e) {
-            System.err.print(e.getMessage());
+            log.error("Can not convert result set", e);
+            throw new RuntimeException(e);
         }
 
         return problemList;

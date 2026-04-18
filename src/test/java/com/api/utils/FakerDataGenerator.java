@@ -2,10 +2,12 @@ package com.api.utils;
 
 import com.api.constant.*;
 import com.api.request.model.*;
+import lombok.extern.log4j.Log4j2;
 import net.datafaker.Faker;
 
 import java.util.*;
 
+@Log4j2
 public class FakerDataGenerator {
     private FakerDataGenerator() {}
     private static final String COUNTRY = "USA";
@@ -16,9 +18,11 @@ public class FakerDataGenerator {
 
 
     public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count) {
+        log.info("Generating payload with fake data for Create Job");
         List<CreateJobPayload> payloadList = new ArrayList<CreateJobPayload>();
 
         for (int i = 0; i < count; i++) {
+            log.info("Generating payload number {}", count);
             CreateJobPayload createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getId(), Platform.FRONT_DESK.getId(),
                     WarrantyStatus.IN_WARRANTY.getId(), OEM.GOOGLE.getId(),
                     generateFakeCustomerData(), generateFakeCustomerAddress(),

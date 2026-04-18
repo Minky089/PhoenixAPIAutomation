@@ -3,6 +3,7 @@ package com.api.tests;
 import com.api.constant.Roles;
 import com.api.request.model.Detail;
 import com.api.services.DashboardService;
+import com.api.utils.AuthTokenProvider;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
