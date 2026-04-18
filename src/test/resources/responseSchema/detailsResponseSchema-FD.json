@@ -1,0 +1,274 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$ref": "#/definitions/Welcome2",
+  "definitions": {
+    "Welcome2": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Datum"
+          }
+        }
+      },
+      "required": [
+        "data",
+        "message"
+      ],
+      "title": "Welcome2"
+    },
+    "Datum": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "job_number": {
+          "type": "string"
+        },
+        "tr_customer_id": {
+          "type": "integer"
+        },
+        "tr_customer_product_id": {
+          "type": "integer"
+        },
+        "mst_service_location_id": {
+          "type": "integer"
+        },
+        "mst_platform_id": {
+          "type": "integer"
+        },
+        "mst_action_status_id": {
+          "type": "integer"
+        },
+        "mst_warrenty_status_id": {
+          "type": "integer"
+        },
+        "mst_oem_id": {
+          "type": "integer"
+        },
+        "repair_start_date": {
+          "type": "null"
+        },
+        "repair_end_date": {
+          "type": "null"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mobile_number": {
+          "type": "string"
+        },
+        "email_id": {
+          "type": "string"
+        },
+        "dop": {
+          "type": "string",
+          "format": "date"
+        },
+        "serial_number": {
+          "type": "string"
+        },
+        "imei1": {
+          "type": "string"
+        },
+        "imei2": {
+          "type": "string"
+        },
+        "popurl": {
+          "$ref": "#/definitions/Popurl"
+        },
+        "mst_model_id": {
+          "type": "integer"
+        },
+        "mst_product_id": {
+          "type": "integer"
+        },
+        "mst_model_name": {
+          "$ref": "#/definitions/MstModelName"
+        },
+        "mst_product_name": {
+          "$ref": "#/definitions/MstProductName"
+        },
+        "mst_service_location_name": {
+          "$ref": "#/definitions/MstServiceLocationName"
+        },
+        "mst_action_status_code": {
+          "$ref": "#/definitions/MstActionStatusCode"
+        },
+        "mst_platform_name": {
+          "$ref": "#/definitions/MstPlatformName"
+        },
+        "mst_warrenty_status": {
+          "$ref": "#/definitions/MstWarrentyStatus"
+        },
+        "mst_oem_name": {
+          "$ref": "#/definitions/MstOEMName"
+        },
+        "mst_action_status": {
+          "$ref": "#/definitions/MstActionStatus"
+        },
+        "assigned_by": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assigned_on": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assigned_to": {
+          "type": "null"
+        },
+        "mst_warrenty_status_code": {
+          "$ref": "#/definitions/MstWarrentyStatusCode"
+        }
+      },
+      "required": [
+        "assigned_by",
+        "assigned_on",
+        "assigned_to",
+        "created_at",
+        "dop",
+        "email_id",
+        "id",
+        "imei1",
+        "imei2",
+        "job_number",
+        "mobile_number",
+        "modified_at",
+        "mst_action_status",
+        "mst_action_status_code",
+        "mst_action_status_id",
+        "mst_model_id",
+        "mst_model_name",
+        "mst_oem_id",
+        "mst_oem_name",
+        "mst_platform_id",
+        "mst_platform_name",
+        "mst_product_id",
+        "mst_product_name",
+        "mst_service_location_id",
+        "mst_service_location_name",
+        "mst_warrenty_status",
+        "mst_warrenty_status_code",
+        "mst_warrenty_status_id",
+        "name",
+        "popurl",
+        "repair_end_date",
+        "repair_start_date",
+        "serial_number",
+        "tr_customer_id",
+        "tr_customer_product_id"
+      ],
+      "title": "Datum"
+    },
+    "Popurl": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "string",
+          "format": "uri"
+        }
+      ],
+      "title": "Popurl"
+    },
+    "MstActionStatus": {
+      "type": "string",
+      "enum": [
+        "Job Closed Successfully",
+        "Pending For Job Assignment"
+      ],
+      "title": "MstActionStatus"
+    },
+    "MstActionStatusCode": {
+      "type": "string",
+      "enum": [
+        "JC",
+        "PJFA"
+      ],
+      "title": "MstActionStatusCode"
+    },
+    "MstModelName": {
+      "type": "string",
+      "enum": [
+        "Nexus 2 blue",
+        "gallexy",
+        "Iphone 11"
+      ],
+      "title": "MstModelName"
+    },
+    "MstOEMName": {
+      "type": "string",
+      "enum": [
+        "Google",
+        "Apple"
+      ],
+      "title": "MstOEMName"
+    },
+    "MstPlatformName": {
+      "type": "string",
+      "enum": [
+        "Front Desk"
+      ],
+      "title": "MstPlatformName"
+    },
+    "MstProductName": {
+      "type": "string",
+      "enum": [
+        "Nexus 2",
+        "IPhone"
+      ],
+      "title": "MstProductName"
+    },
+    "MstServiceLocationName": {
+      "type": "string",
+      "enum": [
+        "Service Center A"
+      ],
+      "title": "MstServiceLocationName"
+    },
+    "MstWarrentyStatus": {
+      "type": "string",
+      "enum": [
+        "In Warrenty",
+        "Out Of Warrenty"
+      ],
+      "title": "MstWarrentyStatus"
+    },
+    "MstWarrentyStatusCode": {
+      "type": "string",
+      "enum": [
+        "IW",
+        "OOW"
+      ],
+      "title": "MstWarrentyStatusCode"
+    }
+  }
+}
