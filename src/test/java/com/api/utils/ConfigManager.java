@@ -12,7 +12,7 @@ public class ConfigManager {
     private static final Properties properties = new Properties();
     //blank final var are allowed to assign value later
     private static final String path;
-    private static final String env;
+    static final String env;
 
     private ConfigManager() {
     }

@@ -1,5 +1,6 @@
 package com.listeners;
 
+import com.api.utils.AllureEnvWriterUtil;
 import lombok.extern.log4j.Log4j2;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -39,6 +40,7 @@ public class APITestListener implements ITestListener {
 
     public void onStart(ITestContext context) {
         log.info("********** Starting the Phoenix Framework **********");
+        AllureEnvWriterUtil.createEnvProperties();
     }
 
     public void onFinish(ITestContext context) {
