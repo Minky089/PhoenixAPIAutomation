@@ -4,8 +4,10 @@ import com.api.constant.*;
 import com.api.request.model.*;
 import com.api.services.JobService;
 import com.api.utils.DateTimeUtil;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import static com.api.utils.SpecUtil.getResponseSpec_OK;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 
+@Listeners(APITestListener.class)
 public class CreateJobAPITest {
     private final String myImei = new Random().ints(15, 0, 10).mapToObj(String::valueOf).collect(Collectors.joining());
     private CreateJobPayload createJobPayload;

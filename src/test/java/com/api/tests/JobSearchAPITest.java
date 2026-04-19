@@ -3,13 +3,16 @@ package com.api.tests;
 import com.api.constant.Roles;
 import com.api.request.model.JobSearch;
 import com.api.services.JobService;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.getResponseSpec_OK;
 import static org.hamcrest.Matchers.notNullValue;
 
+@Listeners(APITestListener.class)
 public class JobSearchAPITest {
     private JobService jobService;
     private JobSearch jobSearchPayload;

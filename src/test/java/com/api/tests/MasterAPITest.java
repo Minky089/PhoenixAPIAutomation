@@ -2,17 +2,17 @@ package com.api.tests;
 
 import com.api.constant.Roles;
 import com.api.services.MasterService;
-import com.api.utils.ConfigManager;
-import io.restassured.http.ContentType;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
-import org.hamcrest.Description;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
+@Listeners(APITestListener.class)
 public class MasterAPITest {
     MasterService masterService;
 

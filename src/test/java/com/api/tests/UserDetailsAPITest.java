@@ -2,11 +2,14 @@ package com.api.tests;
 
 import com.api.constant.Roles;
 import com.api.services.UserService;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.getResponseSpec_OK;
 
+@Listeners(APITestListener.class)
 public class UserDetailsAPITest {
     @Test(description = "Verify if Userdetails API is giving correct response", groups = {"api", "regression", "smoke"})
     public void userDetailsTest() {

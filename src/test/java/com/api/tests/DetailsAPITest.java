@@ -3,15 +3,17 @@ package com.api.tests;
 import com.api.constant.Roles;
 import com.api.request.model.Detail;
 import com.api.services.DashboardService;
-import com.api.utils.AuthTokenProvider;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.getResponseSpec_OK;
 import static com.api.utils.SpecUtil.getResponseSpec_Text;
 import static org.hamcrest.Matchers.*;
 
+@Listeners(APITestListener.class)
 public class DetailsAPITest {
     private DashboardService dashboardService;
     private Detail detail;

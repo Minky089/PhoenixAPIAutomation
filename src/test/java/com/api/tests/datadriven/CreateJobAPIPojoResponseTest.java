@@ -9,7 +9,9 @@ import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
 import com.database.dao.UtilDao;
 import com.db.model.*;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -20,6 +22,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 import static org.testng.Assert.assertEquals;
 
+@Listeners(APITestListener.class)
 public class CreateJobAPIPojoResponseTest {
 
     @Test(description = "Verify if create job API is able to create with fake data generator, " +

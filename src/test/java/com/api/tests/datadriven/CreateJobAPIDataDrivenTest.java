@@ -6,14 +6,15 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.services.JobService;
-import com.api.utils.csv.CSVReaderUtil;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
 import com.db.model.CustomerAddressDBModel;
 import com.db.model.CustomerDBModel;
 import com.db.model.CustomerProductDBModel;
+import com.listeners.APITestListener;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.api.utils.SpecUtil.getRequestSpecWithAuth;
@@ -23,6 +24,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 import static org.testng.Assert.assertEquals;
 
+@Listeners(APITestListener.class)
 public class CreateJobAPIDataDrivenTest {
     //    @Test(description = "Verify if create job API is able to create Inwarranty job",
     //          groups = {"api", "regression", "datadriven", "CSV"},
