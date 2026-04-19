@@ -1,5 +1,6 @@
 package com.api.services;
 
+import com.api.filters.SensitiveDataFilter;
 import com.api.request.model.UserCredentials;
 import com.api.utils.SpecUtil;
 import com.dataproviders.api.bean.UserBean;
@@ -11,7 +12,10 @@ import static io.restassured.RestAssured.given;
 @Log4j2
 public class AuthService {
     private static final String LOGIN_ENDPOINT = "login";
-    private void  prepareRequestLog(String username){log.info("Preparing login request for the user: {}", username);}
+
+    private void prepareRequestLog(String username) {
+        log.info("Preparing login request for the user: {}", username);
+    }
 
     public Response login(Object userCredentials) {
         if (userCredentials instanceof UserCredentials) {
@@ -20,7 +24,8 @@ public class AuthService {
             prepareRequestLog(((UserBean) userCredentials).getUsername());
         }
 
-            return given().spec(SpecUtil.getRequestSpec(userCredentials))
+        return given().filter(new SensitiveDataFilter())
+                .spec(SpecUtil.getRequestSpec(userCredentials))
                 .when().post(LOGIN_ENDPOINT);
     }
 }

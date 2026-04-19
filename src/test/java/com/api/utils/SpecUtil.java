@@ -1,6 +1,7 @@
 package com.api.utils;
 
 import com.api.constant.Roles;
+import com.api.filters.SensitiveDataFilter;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -18,7 +19,6 @@ public class SpecUtil {
                 .setBaseUri(ConfigManager.getProperty("BASE_URI"))
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
-                .log(LogDetail.ALL)
                 .build();
     }
 
@@ -28,7 +28,7 @@ public class SpecUtil {
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .setBody(payload)
-                .log(LogDetail.ALL)
+                .addFilter(new SensitiveDataFilter())
                 .build();
     }
 
@@ -38,7 +38,7 @@ public class SpecUtil {
                 .setContentType(ContentType.JSON)
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
-                .log(LogDetail.ALL)
+                .addFilter(new SensitiveDataFilter())
                 .build();
     }
 
@@ -49,7 +49,7 @@ public class SpecUtil {
                 .setAccept(ContentType.JSON)
                 .addHeader("Authorization", AuthTokenProvider.getToken(role))
                 .setBody(payload)
-                .log(LogDetail.ALL)
+                .addFilter(new SensitiveDataFilter())
                 .build();
     }
 
@@ -58,7 +58,6 @@ public class SpecUtil {
                 .expectContentType(ContentType.JSON)
                 .expectStatusCode(200)
                 .expectResponseTime(lessThan(2000L))
-                .log(LogDetail.ALL)
                 .build();
     }
 
@@ -66,7 +65,6 @@ public class SpecUtil {
         return new ResponseSpecBuilder()
                 .expectStatusCode(statusCode)
                 .expectResponseTime(lessThan(2000L))
-                .log(LogDetail.ALL)
                 .build();
     }
 }
