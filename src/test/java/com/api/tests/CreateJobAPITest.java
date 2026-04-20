@@ -5,6 +5,7 @@ import com.api.request.model.*;
 import com.api.services.JobService;
 import com.api.utils.DateTimeUtil;
 import com.listeners.APITestListener;
+import io.qameta.allure.*;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -20,6 +21,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 
 @Listeners(APITestListener.class)
+@Epic("Job Management")
+@Feature("Job Creation")
 public class CreateJobAPITest {
     private final String myImei = new Random().ints(15, 0, 10).mapToObj(String::valueOf).collect(Collectors.joining());
     private CreateJobPayload createJobPayload;
@@ -35,6 +38,9 @@ public class CreateJobAPITest {
         createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getId(), Platform.FRONT_DESK.getId(), WarrantyStatus.IN_WARRANTY.getId(), OEM.GOOGLE.getId(), customer, customerAddress, customerProduct, problemsList);
     }
 
+    @Story("FD should be able to create job")
+    @Description("Verify if create job API is able to create Inwarranty job")
+    @Severity(SeverityLevel.BLOCKER)
     @Test(description = "Verify if create job API is able to create Inwarranty job", groups = {"api", "regression", "smoke"})
     public void createJobAPITest() {
         jobService.createJob(Roles.FD, createJobPayload)

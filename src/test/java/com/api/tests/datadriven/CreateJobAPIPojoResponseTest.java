@@ -10,6 +10,7 @@ import com.database.dao.CustomerProductDao;
 import com.database.dao.UtilDao;
 import com.db.model.*;
 import com.listeners.APITestListener;
+import io.qameta.allure.*;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -23,8 +24,13 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.testng.Assert.assertEquals;
 
 @Listeners(APITestListener.class)
+@Epic("Job Management")
+@Feature("Data Driven Job Creation with POJO response")
 public class CreateJobAPIPojoResponseTest {
 
+    @Story("FD should be able to create job")
+    @Description("Verify if create job API is able to create with fake data generator and POJO response")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify if create job API is able to create with fake data generator, " +
             "asserting between Response data and database",
             groups = {"api", "regression", "datadriven"},

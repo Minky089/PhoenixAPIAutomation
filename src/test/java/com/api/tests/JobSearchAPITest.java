@@ -4,6 +4,7 @@ import com.api.constant.Roles;
 import com.api.request.model.JobSearch;
 import com.api.services.JobService;
 import com.listeners.APITestListener;
+import io.qameta.allure.*;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -13,6 +14,8 @@ import static com.api.utils.SpecUtil.getResponseSpec_OK;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Listeners(APITestListener.class)
+@Epic("Job Management")
+@Feature("Job Search")
 public class JobSearchAPITest {
     private JobService jobService;
     private JobSearch jobSearchPayload;
@@ -24,7 +27,10 @@ public class JobSearchAPITest {
         jobSearchPayload = new JobSearch(JOB_ID);
     }
 
-    @Test(description = "Verify if details API is giving correct response", groups = {"api", "regression", "smoke"})
+    @Story("FD should be able to search job")
+    @Description("Verify if Job Search API is giving correct response")
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(description = "Verify if Job Search API is giving correct response", groups = {"api", "regression", "smoke"})
     public void jobSearchAPITest() {
         jobService.jobSearch(Roles.FD, jobSearchPayload)
                 .then()

@@ -3,6 +3,7 @@ package com.api.tests;
 import com.api.constant.Roles;
 import com.api.services.DashboardService;
 import com.listeners.APITestListener;
+import io.qameta.allure.*;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -13,6 +14,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 @Listeners(APITestListener.class)
+@Epic("Job Management")
+@Feature("Job Count")
 public class CountAPITest {
     DashboardService dashboardService;
 
@@ -21,6 +24,9 @@ public class CountAPITest {
         dashboardService = new DashboardService();
     }
 
+    @Story("Job Count should be shown")
+    @Description("Verify if the Job Count API is shown correctly for FD user")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify if count API is giving correct response", groups = {"api", "regression", "smoke"})
     public void countAPITest() {
         dashboardService.count(Roles.FD)
@@ -34,6 +40,9 @@ public class CountAPITest {
                 .body("data.key", containsInAnyOrder("pending_fst_assignment", "pending_for_delivery", "created_today"));
     }
 
+    @Story("Job Count should be shown")
+    @Description("Verify Job Count API returns 401 Unauthorized when no token provided")
+    @Severity(SeverityLevel.NORMAL)
     @Test(description = "Verify if count API is giving correct status code for missing token", groups = {"api", "regression", "negative"})
     public void countAPITest_MissingAuthToken() {
         dashboardService.countWithNoAuth()

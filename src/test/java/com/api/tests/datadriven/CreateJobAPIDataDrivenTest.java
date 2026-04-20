@@ -13,6 +13,7 @@ import com.db.model.CustomerAddressDBModel;
 import com.db.model.CustomerDBModel;
 import com.db.model.CustomerProductDBModel;
 import com.listeners.APITestListener;
+import io.qameta.allure.*;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -25,6 +26,8 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.testng.Assert.assertEquals;
 
 @Listeners(APITestListener.class)
+@Epic("Job Management")
+@Feature("Data Driven Job Creation")
 public class CreateJobAPIDataDrivenTest {
     //    @Test(description = "Verify if create job API is able to create Inwarranty job",
     //          groups = {"api", "regression", "datadriven", "CSV"},
@@ -62,6 +65,9 @@ public class CreateJobAPIDataDrivenTest {
                 .body("data.job_number", startsWith("JOB_"));
     }
 
+    @Story("FD should be able to create job")
+    @Description("Verify if create job API is able to create with fake data generator")
+    @Severity(SeverityLevel.CRITICAL)
     @Test(description = "Verify if create job API is able to create with fake data generator",
             groups = {"api", "regression", "datadriven"},
             dataProviderClass = com.dataproviders.DataProvidersUtils.class,
