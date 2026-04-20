@@ -1,7 +1,9 @@
 package com.dataproviders.api.bean;
 
 import com.opencsv.bean.CsvBindByName;
+import lombok.Getter;
 
+@Getter
 public class UserBean {
     @CsvBindByName(column = "username")
     private String username;
@@ -14,21 +16,7 @@ public class UserBean {
     public String toString() {
         return "UserPOJO{" +
                 "username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", password= ********'" + '\'' +
                 '}';
-    }
-
-    public UserBean(String username, String password) {
-        super();
-        this.username = username;
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }
