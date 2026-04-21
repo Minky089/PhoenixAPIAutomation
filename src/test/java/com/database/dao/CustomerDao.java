@@ -2,6 +2,7 @@ package com.database.dao;
 
 import com.database.DatabaseManager;
 import com.db.model.CustomerDBModel;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.*;
@@ -11,6 +12,7 @@ public class CustomerDao {
     private CustomerDao() {}
     private static final String CUSTOMER_DETAIL_QUERY = "select * from tr_customer where id = ?";
 
+    @Step("Retrieving Customer Data from Database")
     public static CustomerDBModel getCustomerInfo(int customerId) {
         CustomerDBModel customerDBModel = null;
         try {

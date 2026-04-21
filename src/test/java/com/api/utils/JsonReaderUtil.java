@@ -1,6 +1,7 @@
 package com.api.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.List;
 public class JsonReaderUtil {
     private JsonReaderUtil() {}
 
+    @Step("Loading Test Data from JSON file")
     public static <T> Iterator<T> loadJSON (String fileName, Class<T[]> clazz) {
         log.info("Reading JSON from file: {}", fileName);
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);

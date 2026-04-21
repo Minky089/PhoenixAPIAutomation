@@ -2,6 +2,7 @@ package com.api.utils;
 
 import com.api.request.model.*;
 import com.dataproviders.api.bean.CreateJobBean;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class CreateJobBeanMapper {
     private CreateJobBeanMapper() {
     }
 
+    @Step("Converting CreateJobBean to CreateJobPayload")
     public static CreateJobPayload mapper(CreateJobBean bean) {
         log.info("Converting Create Job Bean {} to Create Job Payload...", bean);
         int mstServiceLocationId = Integer.parseInt(bean.getMst_service_location_id());

@@ -2,6 +2,7 @@ package com.api.utils;
 
 import com.api.constant.Roles;
 import com.api.request.model.UserCredentials;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import lombok.extern.log4j.Log4j2;
 
@@ -16,6 +17,7 @@ public class AuthTokenProvider {
     private AuthTokenProvider() {}
     private static final Map<Roles, String> tokenCache = new ConcurrentHashMap<>();
 
+    @Step("Getting the Auth token for role")
     public static String getToken(Roles role) {
         log.info("Checking if the token for {} is present in the cache", role);
         if (tokenCache.containsKey(role)) {

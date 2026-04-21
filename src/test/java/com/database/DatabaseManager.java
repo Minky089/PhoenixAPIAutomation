@@ -4,6 +4,7 @@ import com.api.utils.ConfigManager;
 import com.api.utils.EnvUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -17,6 +18,7 @@ public class DatabaseManager {
     private static volatile Connection conn;
     private static volatile HikariDataSource hikariDataSource;
 
+    @Step("Initializing the Database connection pool")
     private static void instantiateHikariPool() {
         if (hikariDataSource == null) {
             log.warn("Database Connection is not available yet, creating Hikari Datasource");
@@ -35,6 +37,7 @@ public class DatabaseManager {
         }
     }
 
+    @Step("Getting the Database Connection")
     public static Connection getConnection() throws SQLException {
         Connection conn = null;
         if(hikariDataSource == null) {

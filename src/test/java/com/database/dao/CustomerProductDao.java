@@ -3,6 +3,7 @@ package com.database.dao;
 import com.database.DatabaseManager;
 import com.db.model.CustomerDBModel;
 import com.db.model.CustomerProductDBModel;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -15,6 +16,7 @@ public class CustomerProductDao {
     private CustomerProductDao() {}
     private static final String CUSTOMER_DETAIL_QUERY = "select * from tr_customer_product where tr_customer_id = ?";
 
+    @Step("Retrieving Customer Product Data from Database")
     public static CustomerProductDBModel getCustomerProductInfo(int customerId) {
         CustomerProductDBModel customerAddressDBModel = null;
         try {

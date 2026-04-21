@@ -1,5 +1,6 @@
 package com.api.utils;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
@@ -46,6 +47,7 @@ public class ConfigManager {
     }
 
     //Read properties files from src/test/resources
+    @Step("Getting Property value from the Config file")
     public static String getProperty(String key) {
         return properties.getProperty(key);
     }

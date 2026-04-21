@@ -3,6 +3,7 @@ package com.api.utils.csv;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.util.List;
 public class CSVReaderUtil {
     private CSVReaderUtil() {}
 
+    @Step("Loading Test Data from CSV file")
     public static <T> Iterator<T> loadBeanCSV(String pathOfCSVFile, Class<T> beanClass) {
         //Sample file: testData/LoginCreds.csv
         log.info("Load bean csv file from the path: " + pathOfCSVFile);

@@ -4,6 +4,7 @@ import com.api.constant.Product;
 import com.api.request.model.CreateJobPayload;
 import com.database.DatabaseManager;
 import com.dataproviders.api.bean.CreateJobBean;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -60,6 +61,7 @@ public class CreateJobPayloadDao {
                     LIMIT 5;
                     """;
 
+    @Step("Retrieving CreateJob Payload Data from Database")
     public static CreateJobBean getCreateJobPayloadData() {
         Connection conn = null;
         Statement stmt = null;

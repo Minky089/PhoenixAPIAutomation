@@ -2,6 +2,7 @@ package com.api.utils;
 
 import com.api.constant.*;
 import com.api.request.model.*;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import net.datafaker.Faker;
 
@@ -16,7 +17,7 @@ public class FakerDataGenerator {
     private static final int VALID_PROBLEM_IDS[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 19, 20, 22, 24, 26, 27, 28, 29};
 
 
-
+    @Step("Generating multiple Fake Create Job data with count")
     public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count) {
         log.info("Generating payload with fake data for Create Job");
         List<CreateJobPayload> payloadList = new ArrayList<CreateJobPayload>();
@@ -32,6 +33,7 @@ public class FakerDataGenerator {
         return payloadList.iterator();
     }
 
+    @Step("Generating multiple Fake Customer data")
     private static Customer generateFakeCustomerData() {
         String firstName = FAKER.name().firstName();
         String lastName = FAKER.name().lastName();
@@ -43,6 +45,7 @@ public class FakerDataGenerator {
         return new Customer(firstName, lastName, mobileNumber, alternateMobileNumber, emailAddress, altEmailAddress);
     }
 
+    @Step("Generating multiple Fake Customer Address data")
     private static CustomerAddress generateFakeCustomerAddress() {
         String flatNumber = FAKER.numerify("###");
         String apartmentNumber = FAKER.address().streetName();
@@ -55,6 +58,7 @@ public class FakerDataGenerator {
         return new CustomerAddress(flatNumber, apartmentNumber, streetName, landMark, area, pinCode, COUNTRY, state);
     }
 
+    @Step("Generating multiple Fake Customer Product data")
     private static CustomerProduct generateFakeCustomerProduct() {
         String dop = DateTimeUtil.getTimeWithDaysAgo(10);
         String imeiSerialNumber = FAKER.numerify("###############");
@@ -64,6 +68,7 @@ public class FakerDataGenerator {
                 popurl, Product.NEXUS_2.getId(), Model.NEXUS_2_BLUE.getId());
     }
 
+    @Step("Generating multiple Fake Problem List data")
     private static List<Problems> generateFakeProblems() {
         List<Problems> problemsList = new ArrayList<>();
         int maxProblems = RANDOM.nextInt(3) + 1;

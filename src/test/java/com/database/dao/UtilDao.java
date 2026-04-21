@@ -3,6 +3,7 @@ package com.database.dao;
 import com.database.DatabaseManager;
 import com.db.model.JobHeadDBModel;
 import com.db.model.JobProblemDBModel;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -18,6 +19,7 @@ public class UtilDao {
     private static final String PROBLEM_QUERY = "select * from map_job_problem where tr_job_head_id = ?";
     private static final String JOB_HEAD_QUERY = "select * from tr_job_head where tr_customer_id = ?";
 
+    @Step("Retrieving Problem List Data from Database")
     public static List<JobProblemDBModel> getJobProblemInfo(int jobHeadId) {
         List<JobProblemDBModel> problemList = new ArrayList<>();
         try {
@@ -40,6 +42,7 @@ public class UtilDao {
         return problemList;
     }
 
+    @Step("Retrieving Job Head Data from Database")
     public static JobHeadDBModel getJobHeadInfo(int customerId) {
         JobHeadDBModel jobHead = null;
         try {

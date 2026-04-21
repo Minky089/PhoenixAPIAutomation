@@ -3,6 +3,7 @@ package com.database.dao;
 import com.database.DatabaseManager;
 import com.db.model.CustomerAddressDBModel;
 import com.db.model.CustomerDBModel;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
@@ -16,6 +17,7 @@ public class CustomerAddressDao {
 
     private static final String CUSTOMER_ADDRESS_DETAIL_QUERY = "select * from tr_customer_address where id = ?";
 
+    @Step("Retrieving Customer Address Data from Database")
     public static CustomerAddressDBModel getCustomerAddressInfo(int customerAddressId) {
         CustomerAddressDBModel customerAddressDBModel = null;
         try {
