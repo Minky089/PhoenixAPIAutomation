@@ -41,7 +41,7 @@ jobs:
             echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
     - name: Execute Test
-      run: mvn clean test -DsuiteFile="${{ github.event.inputs.suiteFile }}" -Denv="${{ github.event.inputs.env }}"
+      run: mvn clean test -DsuiteFile="${{ github.event.inputs.suiteFile || 'testSuite.xml' }}" -Denv="${{ github.event.inputs.env || 'qa' }}"
     - name: Upload a Build Artifact
       if: always()
       uses: actions/upload-artifact@v7.0.1
