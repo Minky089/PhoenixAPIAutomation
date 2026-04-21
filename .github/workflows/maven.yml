@@ -42,6 +42,18 @@ jobs:
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
     - name: Execute Test
       run: mvn clean test -DsuiteFile="${{ github.event.inputs.suiteFile || 'testSuite.xml' }}" -Denv="${{ github.event.inputs.env || 'qa' }}"
+    
+    - name: Generating Allure Report
+      if: always()
+      run: mvn allure:report
+
+    - name : Creating github page branch
+      if: always()
+      uses: peaceiris/actions-gh-pages@v4.0.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: target/site/allure-maven-plugin
+      
     - name: Upload a Build Artifact
       if: always()
       uses: actions/upload-artifact@v7.0.1
