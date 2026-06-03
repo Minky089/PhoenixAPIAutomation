@@ -1,0 +1,114 @@
+<div>POST to http://64.227.160.186:9000/v1/job/create</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;mst_service_location_id&quot;: 1,
+    &quot;mst_platform_id&quot;: 2,
+    &quot;mst_warrenty_status_id&quot;: 1,
+    &quot;mst_oem_id&quot;: 1,
+    &quot;customer&quot;: {
+        &quot;first_name&quot;: &quot;Sarita&quot;,
+        &quot;last_name&quot;: &quot;Koepp&quot;,
+        &quot;mobile_number&quot;: &quot;0932189535&quot;,
+        &quot;mobile_number_alt&quot;: &quot;0928333229&quot;,
+        &quot;email_id&quot;: &quot;benito.johns@yahoo.com&quot;,
+        &quot;email_id_alt&quot;: &quot;shelton.jast@yahoo.com&quot;
+    },
+    &quot;customer_address&quot;: {
+        &quot;flat_number&quot;: &quot;309&quot;,
+        &quot;apartment_name&quot;: &quot;Cassin Port&quot;,
+        &quot;street_name&quot;: &quot;Demetra Creek&quot;,
+        &quot;landmark&quot;: &quot;O&#39;Connell Hill&quot;,
+        &quot;area&quot;: &quot;Lockman Vista&quot;,
+        &quot;pincode&quot;: &quot;85737&quot;,
+        &quot;country&quot;: &quot;USA&quot;,
+        &quot;state&quot;: &quot;Vermont&quot;
+    },
+    &quot;customer_product&quot;: {
+        &quot;dop&quot;: &quot;2026-05-24&quot;,
+        &quot;serial_number&quot;: &quot;413756580726999&quot;,
+        &quot;imei1&quot;: &quot;413756580726999&quot;,
+        &quot;imei2&quot;: &quot;413756580726999&quot;,
+        &quot;popurl&quot;: &quot;https://www.janice-gerhold.info:23310/&quot;,
+        &quot;product_id&quot;: 1,
+        &quot;mst_model_id&quot;: 1
+    },
+    &quot;problems&quot;: [
+        {
+            &quot;id&quot;: 28,
+            &quot;remark&quot;: &quot;Iusto dolores exercitationem sunt minus.&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;remark&quot;: &quot;In eaque impedit.&quot;
+        },
+        {
+            &quot;id&quot;: 27,
+            &quot;remark&quot;: &quot;Numquam illum autem nam porro.&quot;
+        }
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6ImZkIiwibGFzdF9uYW1lIjoiZmQiLCJsb2dpbl9pZCI6ImlhbWZkIiwibW9iaWxlX251bWJlciI6Ijg4OTk3NzY2NTUiLCJlbWFpbF9pZCI6Im1hcmtAZ21haWwuY29tIiwicGFzc3dvcmQiOiI1ZjRkY2MzYjVhYTc2NWQ2MWQ4MzI3ZGViODgyY2Y5OSIsInJlc2V0X3Bhc3N3b3JkX2RhdGUiOm51bGwsImxvY2tfc3RhdHVzIjowLCJpc19hY3RpdmUiOjEsIm1zdF9yb2xlX2lkIjo1LCJtc3Rfc2VydmljZV9sb2NhdGlvbl9pZCI6MSwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMDNUMDg6MDY6MjMuMDAwWiIsIm1vZGlmaWVkX2F0IjoiMjAyMS0xMS0wM1QwODowNjoyMy4wMDBaIiwicm9sZV9uYW1lIjoiRnJvbnREZXNrIiwic2VydmljZV9sb2NhdGlvbiI6IlNlcnZpY2UgQ2VudGVyIEEiLCJpYXQiOjE3ODA0NTI5Njh9.Pv8WDp_W4rmNmTCa_VVJUfDG2ZYXsE9NFiqE9u8XasM</div>
+            <div>Accept: application/json, application/javascript, text/javascript, text/json</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://64.227.160.186:9000/v1/job/create&#39; -H &#39;Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZmlyc3RfbmFtZSI6ImZkIiwibGFzdF9uYW1lIjoiZmQiLCJsb2dpbl9pZCI6ImlhbWZkIiwibW9iaWxlX251bWJlciI6Ijg4OTk3NzY2NTUiLCJlbWFpbF9pZCI6Im1hcmtAZ21haWwuY29tIiwicGFzc3dvcmQiOiI1ZjRkY2MzYjVhYTc2NWQ2MWQ4MzI3ZGViODgyY2Y5OSIsInJlc2V0X3Bhc3N3b3JkX2RhdGUiOm51bGwsImxvY2tfc3RhdHVzIjowLCJpc19hY3RpdmUiOjEsIm1zdF9yb2xlX2lkIjo1LCJtc3Rfc2VydmljZV9sb2NhdGlvbl9pZCI6MSwiY3JlYXRlZF9hdCI6IjIwMjEtMTEtMDNUMDg6MDY6MjMuMDAwWiIsIm1vZGlmaWVkX2F0IjoiMjAyMS0xMS0wM1QwODowNjoyMy4wMDBaIiwicm9sZV9uYW1lIjoiRnJvbnREZXNrIiwic2VydmljZV9sb2NhdGlvbiI6IlNlcnZpY2UgQ2VudGVyIEEiLCJpYXQiOjE3ODA0NTI5Njh9.Pv8WDp_W4rmNmTCa_VVJUfDG2ZYXsE9NFiqE9u8XasM&#39; -H &#39;Accept: application/json, application/javascript, text/javascript, text/json&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;mst_service_location_id&quot;: 1,
+    &quot;mst_platform_id&quot;: 2,
+    &quot;mst_warrenty_status_id&quot;: 1,
+    &quot;mst_oem_id&quot;: 1,
+    &quot;customer&quot;: {
+        &quot;first_name&quot;: &quot;Sarita&quot;,
+        &quot;last_name&quot;: &quot;Koepp&quot;,
+        &quot;mobile_number&quot;: &quot;0932189535&quot;,
+        &quot;mobile_number_alt&quot;: &quot;0928333229&quot;,
+        &quot;email_id&quot;: &quot;benito.johns@yahoo.com&quot;,
+        &quot;email_id_alt&quot;: &quot;shelton.jast@yahoo.com&quot;
+    },
+    &quot;customer_address&quot;: {
+        &quot;flat_number&quot;: &quot;309&quot;,
+        &quot;apartment_name&quot;: &quot;Cassin Port&quot;,
+        &quot;street_name&quot;: &quot;Demetra Creek&quot;,
+        &quot;landmark&quot;: &quot;O&#39;Connell Hill&quot;,
+        &quot;area&quot;: &quot;Lockman Vista&quot;,
+        &quot;pincode&quot;: &quot;85737&quot;,
+        &quot;country&quot;: &quot;USA&quot;,
+        &quot;state&quot;: &quot;Vermont&quot;
+    },
+    &quot;customer_product&quot;: {
+        &quot;dop&quot;: &quot;2026-05-24&quot;,
+        &quot;serial_number&quot;: &quot;413756580726999&quot;,
+        &quot;imei1&quot;: &quot;413756580726999&quot;,
+        &quot;imei2&quot;: &quot;413756580726999&quot;,
+        &quot;popurl&quot;: &quot;https://www.janice-gerhold.info:23310/&quot;,
+        &quot;product_id&quot;: 1,
+        &quot;mst_model_id&quot;: 1
+    },
+    &quot;problems&quot;: [
+        {
+            &quot;id&quot;: 28,
+            &quot;remark&quot;: &quot;Iusto dolores exercitationem sunt minus.&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;remark&quot;: &quot;In eaque impedit.&quot;
+        },
+        {
+            &quot;id&quot;: 27,
+            &quot;remark&quot;: &quot;Numquam illum autem nam porro.&quot;
+        }
+    ]
+}&#39;
+    </div>
+
